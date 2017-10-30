@@ -25,6 +25,9 @@ module Bitstamp
   # Bitstamp client ID
   mattr_accessor :client_id
 
+  # Base Bitstamp API URL
+  mattr_accessor :api_url
+
   # Currency
   mattr_accessor :currency
   @@currency = :usd
@@ -87,7 +90,7 @@ module Bitstamp
   end
 
   def self.configured?
-    self.key && self.secret && self.client_id
+    self.key && self.secret && self.client_id && self.api_url
   end
 
   def self.sanity_check!

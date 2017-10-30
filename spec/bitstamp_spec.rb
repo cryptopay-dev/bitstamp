@@ -12,6 +12,7 @@ describe Bitstamp do
           config.key = 'test'
           config.secret = 'test'
           config.client_id = 'test'
+          config.api_url = 'test'
         end
       }
       it { -> { Bitstamp.sanity_check! }.should_not raise_error }
