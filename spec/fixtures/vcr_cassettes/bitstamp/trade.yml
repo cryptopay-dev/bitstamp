@@ -2,10 +2,10 @@
 http_interactions:
 - request:
     method: post
-    uri: https://www.bitstamp.net/api/v2/balance/
+    uri: https://www.bitstamp.net/api/v2/sell/market/btceur/
     body:
       encoding: UTF-8
-      string: key=<BITSTAMP_KEY>&nonce=1510930283567644&signature=09B6B01C80DB3C12A9317D884FA450699497FC01C027E5DB6F1AE9C297F314CC
+      string: amount=0.001&key=<BITSTAMP_KEY>&nonce=1510930555101350&signature=D357026D16A3E582F862AE8071D82B935B8FC60B65039B0F2E8177A662FF434E
     headers:
       Accept:
       - "*/*"
@@ -14,7 +14,7 @@ http_interactions:
       User-Agent:
       - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.3.3p222
       Content-Length:
-      - '134'
+      - '147'
       Content-Type:
       - application/x-www-form-urlencoded
       Host:
@@ -37,11 +37,11 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 17 Nov 2017 14:51:24 GMT
+      - Fri, 17 Nov 2017 14:55:55 GMT
       Expires:
-      - Fri, 17 Nov 2017 14:51:24 GMT
+      - Fri, 17 Nov 2017 14:55:55 GMT
       Last-Modified:
-      - Fri, 17 Nov 2017 14:51:24 GMT
+      - Fri, 17 Nov 2017 14:55:55 GMT
       Server:
       - Apache
       Strict-Transport-Security:
@@ -55,13 +55,13 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - incap_ses_522_99025=mom4RUbDpBh4t4VbxYQ+B2v3DloAAAAAJWcszi/rp0fH1f97ErUj3A==;
+      - incap_ses_522_99025=5yvvSZHDNgaU1oVbxYQ+B3v4DloAAAAAPOBTM/EHDt9oH41qww9GYQ==;
         path=/; Domain=.bitstamp.net
-      - nlbi_99025=dGAsX5VnPjgRawYO8F1n9AAAAAAfvga+4/ju+rItfZTiMFqS; path=/; Domain=.bitstamp.net
-      - visid_incap_99025=1rdGXKJgSZ6rxGOwKNDaW2v3DloAAAAAQUIPAAAAAACVsND2D9HWfDd+5T6DEwQz;
+      - nlbi_99025=ZkKgaCwjeWXps2758F1n9AAAAABKFMul7bHQxg2aqO5J9b+D; path=/; Domain=.bitstamp.net
+      - visid_incap_99025=PS5K5w3JQbidL3CUN4GCcnv4DloAAAAAQUIPAAAAAADOB/UFejQ2+aCtXzUy6XG/;
         expires=Sat, 17 Nov 2018 09:34:10 GMT; path=/; Domain=.bitstamp.net
       X-Iinfo:
-      - 9-594360-591427 PNNN RT(1510930283449 114) q(0 0 0 -1) r(1 1) U6
+      - 9-602819-599119 PNNN RT(1510930555015 110) q(0 0 0 -1) r(1 1) U6
       X-Cdn:
       - Incapsula
       Content-Encoding:
@@ -69,11 +69,9 @@ http_interactions:
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        H4sIAAAAAAAA/32RWwrCMBBFt1LyLSUNiNXNlLQdUQgi6QNB3LsTmYQ8Jubz
-        nCRzL/MW4zoNetd3o0cD4tII2cr+rCQecWh+etRGP6aKtLCA3WEmS4csbHa4
-        Ar1UR6LbMucU1luRIvrK6TRFJusp0LqYYV6niCbZAk2yEcWLSbZT1/bSmyhW
-        wvNExJnuhtlAVMAUG8hkvTvapHuYx+zFsHtxqMjmRZbKY675yz7/dXS62tHJ
-        eke0TEekTEekecfPF0QcrE0CAwAA
+        H4sIAAAAAAAA/x2KQQ6AIAwEv0J6FtISoNbfEPHAQSUGD8b4d62bPexO5oZ2
+        1HmByUBiEicCg4G87ufWFaJDJNQo71f7VdJTi84gOIbEySsquS+9rr/jkdgS
+        WWJDYYrxq5OIURieFy8/I9p2AAAA
     http_version: 
-  recorded_at: Fri, 17 Nov 2017 14:51:24 GMT
+  recorded_at: Fri, 17 Nov 2017 14:55:55 GMT
 recorded_with: VCR 3.0.3

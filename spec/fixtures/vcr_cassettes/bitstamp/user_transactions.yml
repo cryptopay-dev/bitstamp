@@ -2,10 +2,10 @@
 http_interactions:
 - request:
     method: post
-    uri: https://www.bitstamp.net/api/v2/balance/
+    uri: https://www.bitstamp.net/api/v2/user_transactions/btceur/
     body:
       encoding: UTF-8
-      string: key=<BITSTAMP_KEY>&nonce=1510930283567644&signature=09B6B01C80DB3C12A9317D884FA450699497FC01C027E5DB6F1AE9C297F314CC
+      string: key=<BITSTAMP_KEY>&nonce=1510930483256514&signature=550C152487AD91CA9421C017EC76A485F21828384C93AF929F48D9111435F8F9
     headers:
       Accept:
       - "*/*"
@@ -37,11 +37,11 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 17 Nov 2017 14:51:24 GMT
+      - Fri, 17 Nov 2017 14:54:44 GMT
       Expires:
-      - Fri, 17 Nov 2017 14:51:24 GMT
+      - Fri, 17 Nov 2017 14:54:44 GMT
       Last-Modified:
-      - Fri, 17 Nov 2017 14:51:24 GMT
+      - Fri, 17 Nov 2017 14:54:44 GMT
       Server:
       - Apache
       Strict-Transport-Security:
@@ -55,13 +55,13 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - incap_ses_522_99025=mom4RUbDpBh4t4VbxYQ+B2v3DloAAAAAJWcszi/rp0fH1f97ErUj3A==;
+      - incap_ses_522_99025=akXVGyvhpGNKz4VbxYQ+BzP4DloAAAAA1SV+gMuyhrD+jfHR1EbLsA==;
         path=/; Domain=.bitstamp.net
-      - nlbi_99025=dGAsX5VnPjgRawYO8F1n9AAAAAAfvga+4/ju+rItfZTiMFqS; path=/; Domain=.bitstamp.net
-      - visid_incap_99025=1rdGXKJgSZ6rxGOwKNDaW2v3DloAAAAAQUIPAAAAAACVsND2D9HWfDd+5T6DEwQz;
+      - nlbi_99025=AgwQF3w4EBTm6rJe8F1n9AAAAAALo6spAydLIaDu2hubT4Ng; path=/; Domain=.bitstamp.net
+      - visid_incap_99025=uvFtulSCQaOIOfDMWvtwJzP4DloAAAAAQUIPAAAAAAAqVDU8pMeUbQrbBIqWeCgn;
         expires=Sat, 17 Nov 2018 09:34:10 GMT; path=/; Domain=.bitstamp.net
       X-Iinfo:
-      - 9-594360-591427 PNNN RT(1510930283449 114) q(0 0 0 -1) r(1 1) U6
+      - 8-378007-377951 PNNN RT(1510930483150 117) q(0 0 0 -1) r(1 1) U6
       X-Cdn:
       - Incapsula
       Content-Encoding:
@@ -69,11 +69,11 @@ http_interactions:
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        H4sIAAAAAAAA/32RWwrCMBBFt1LyLSUNiNXNlLQdUQgi6QNB3LsTmYQ8Jubz
-        nCRzL/MW4zoNetd3o0cD4tII2cr+rCQecWh+etRGP6aKtLCA3WEmS4csbHa4
-        Ar1UR6LbMucU1luRIvrK6TRFJusp0LqYYV6niCbZAk2yEcWLSbZT1/bSmyhW
-        wvNExJnuhtlAVMAUG8hkvTvapHuYx+zFsHtxqMjmRZbKY675yz7/dXS62tHJ
-        eke0TEekTEekecfPF0QcrE0CAwAA
+        H4sIAAAAAAAA/32OwQ6CMAyGX2XpWZa2YxvbqxhDVGbCwWhwHIzh3e0gBi7S
+        U9u//9/v+IFbShAVoEbGueCg4DF0aWj7TpQ6oCVENrLuzjnl/j4bGMlXRBV5
+        RRytj6YuzvFVTJIm/SVfy2UlE2Lzy5Ztm8ZBFOfIalMvb0XJ7+cSXc7m5+yc
+        48BO5sUCVnOA6aA24OT/gTMFsnvgFJkiNjvgtGZvwb1IZh/cMplmBXdOe4Tp
+        9AWN3bSOcwEAAA==
     http_version: 
-  recorded_at: Fri, 17 Nov 2017 14:51:24 GMT
+  recorded_at: Fri, 17 Nov 2017 14:54:43 GMT
 recorded_with: VCR 3.0.3
