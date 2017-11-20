@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+
+require 'bundler/setup'
+require 'dotenv/load'
+require 'pry'
+require 'bitstamp'
+
+Bitstamp.configure do |config|
+  config.api_url = ENV['BITSTAMP_API_URL']
+  config.key = ENV['BITSTAMP_KEY']
+  config.secret = ENV['BITSTAMP_SECRET']
+  config.customer_id = ENV['BITSTAMP_CUSTOMER_ID']
+  config.logger = Logger.new(STDOUT)
+end
+
+Pry.start
