@@ -1,3 +1,4 @@
+require 'logger'
 require 'virtus'
 
 require 'bitstamp/config'

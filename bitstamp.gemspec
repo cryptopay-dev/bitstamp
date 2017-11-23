@@ -15,8 +15,8 @@ Gem::Specification.new do |s|
   s.files = `git ls-files`.split($INPUT_RECORD_SEPARATOR)
   s.require_paths = ['lib']
 
-  s.add_dependency 'rest-client', '~> 1.7'
   s.add_dependency 'virtus', '~> 1.0'
+  s.add_dependency 'activesupport'
 
   s.add_development_dependency 'bundler', '~> 1.13'
   s.add_development_dependency 'rake', '~> 10.0'
