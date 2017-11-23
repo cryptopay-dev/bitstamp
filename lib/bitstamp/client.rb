@@ -1,6 +1,8 @@
-require 'rest_client'
 require 'openssl'
 require 'json'
+require 'active_support/core_ext/object/blank'
+require 'active_support/core_ext/string/inflections'
+require 'active_support/gzip'
 
 module Bitstamp
   class Client
@@ -11,36 +13,70 @@ module Bitstamp
     end
 
     def call(method:, path:, payload: {}, auth: false)
-      url = "#{config.api_url.chomp('/')}/#{path}"
+      url = URI.join("#{config.api_url.chomp('/')}/#{path}")
 
       payload = payload.merge(auth_params) if auth
 
       logger.info("Bitstamp: sending #{method} '#{url}'")
 
-      response = RestClient::Request.execute(
-        method: method,
-        url: url,
-        payload: payload,
-        proxy: config.proxy,
-        ssl_version: 'SSLv23'
-      )
+      http = build_http(url)
+      request = build_request(method, url, payload)
+      response = http.request(request)
 
       logger.info("Bitstamp: finished #{method} '#{url}' with #{response.code}")
 
-      result = JSON.parse(response)
+      check_response_error(response)
+      parse_response(method, url, response)
+    end
 
-      if result.is_a?(Hash) && result['status'] == 'error'
-        message = "Bitstamp: failed #{method} '#{url}' with #{response.code} #{result}"
+    private
+
+    def build_http(url)
+      if config.proxy
+        proxy_uri = URI.parse(config.proxy)
+        http = Net::HTTP.new(url.host, url.port, proxy_uri.host, proxy_uri.port, proxy_uri.user, proxy_uri.password)
+      else
+        http = Net::HTTP.new(url.host, url.port)
+      end
+
+      http.use_ssl = true if url.scheme == 'https'
+
+      http
+    end
+
+    def build_request(method, url, payload)
+      klass = "Net::HTTP::#{method.to_s.camelize}".safe_constantize
+      raise "Unsupported request method #{method}" unless klass
+
+      request = klass.new(url.request_uri)
+      request.body = URI.encode_www_form(payload) if payload.present? && method != :get
+
+      request.add_field('Content-Type', 'application/x-www-form-urlencoded')
+      request.add_field('Accept', 'application/json')
+
+      request
+    end
+
+    def check_response_error(response)
+      response.error! if response.is_a?(Net::HTTPServerError)
+    end
+
+    def parse_response(method, url, response)
+      data = response.body
+      data = ActiveSupport::Gzip.decompress(data) if response['Content-Encoding'] == 'gzip'
+      data = JSON.parse(data)
+
+      if data.is_a?(Hash) && data['status'] == 'error'
+        message = "Bitstamp: failed #{method} '#{url}' with #{response.code} #{data}"
         logger.error(message)
         raise Error, message
       else
-        result
+        data
       end
-
-      JSON.parse(response)
-    rescue RestClient::ExceptionWithResponse => e
-      logger.error("Bitstamp: failed #{method} '#{url}' with #{e.http_code} #{e.response}")
-      raise
+    rescue JSON::ParserError
+      message = "Bitstamp: failed #{method} '#{url}' with #{response.code} malformed response: #{data}"
+      logger.error(message)
+      raise Error, message
     end
 
     private
@@ -56,7 +92,7 @@ module Bitstamp
     end
 
     def generate_signature(nonce)
-      OpenSSL::HMAC.hexdigest('SHA256', config.secret, nonce + config.customer_id.to_s + config.key).upcase
+      OpenSSL::HMAC.hexdigest('SHA256', config.secret.to_s, nonce + config.customer_id.to_s + config.key.to_s).upcase
     end
 
     def logger
